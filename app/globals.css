@@ -1,26 +1,47 @@
+/* ✅ Import Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ✅ Enable class-based dark mode (Tailwind v4 syntax) */
+@theme {
+  --darkMode: class;
 }
 
+/* ✅ Brand + unified color palette */
+:root {
+  --color-bg-light: #f8f6f5;
+  --color-bg-dark: #0e0e0e;
+
+  --color-card-light: #ffffff;
+  --color-card-dark: #1f2937;
+
+  --color-text-light: #1f2937;
+  --color-text-dark: #f3f4f6;
+
+  --color-primary: #1e3a8a;
+  --color-primary-hover: #1e40af;
+
+  --color-primary-dark: #3b82f6;
+  --color-primary-dark-hover: #2563eb;
+}
+
+/* ✅ Smooth transitions when toggling theme */
+body {
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+    
+}
+
+/* ✅ Tailwind v4 typography + fonts override if needed */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg-light);
+  --color-foreground: var(--color-text-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ✅ Swap values in dark mode */
+.dark {
+  --color-background: var(--color-bg-dark);
+  --color-foreground: var(--color-text-dark);
 }

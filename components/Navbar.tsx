@@ -1,8 +1,10 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { FaHotel } from "react-icons/fa";
 
 interface UserProfile {
   name: string;
@@ -50,20 +52,27 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white dark:bg-gray-900 shadow-md fixed top-0 left-0 w-full z-50">
-      
+<nav
+      className="flex items-center justify-between px-8 py-4 shadow-md fixed top-0 left-0 w-full z-50 bg-[#0F172A] dark:bg-[#111827]"
+    >
       {/* Logo */}
-      <Link href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-        StayFinder
-      </Link>
+      <Link href="/" className="flex items-center gap-3">
+  <FaHotel className="h-10 w-10 text-[#E3E8F1] drop-shadow-md" />
+  <span className="text-2xl text-[#E3E8F1] dark:text-white font-semibold">
+    StayFinder
+  </span>
+</Link>
+
 
       {/* Navigation Links */}
-      <ul className="hidden md:flex gap-8 text-gray-700 dark:text-gray-200 font-medium">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/hotels">Hotels</Link></li>
-        <li><Link href="/offers">Offers</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
-      </ul>
+    <ul className="text-2xl flex gap-8 text-[#E3E8F1] dark:text-white ml-[auto] mr-65">
+
+      <li><Link href="/">Home</Link></li>
+      <li><Link href="/hotels">Hotels</Link></li>
+      <li><Link href="/offers">Offers</Link></li>
+      <li><Link href="/contact">Contact</Link></li>
+    </ul>
+
 
       {/* Right section */}
       <div className="flex items-center gap-3">
@@ -73,14 +82,18 @@ export default function Navbar() {
           <>
             <Link
               href="/signin"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              className="text-lg px-5 py-2 rounded-lg font-semibold 
+                       bg-[#1E3A8A] hover:bg-[#1E40AF] 
+                       text-white transition-all duration-300 shadow-md"
             >
               Sign In
             </Link>
 
             <Link
               href="/register"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              className="text-lg px-5 py-2 rounded-lg font-semibold 
+                       bg-[#1E3A8A] hover:bg-[#1E40AF] 
+      text-white transition-all duration-300 shadow-md"
             >
               Register
             </Link>

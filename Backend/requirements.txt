@@ -1,0 +1,8 @@
+flask
+flask-pymongo
+flask-bcrypt
+flask-jwt-extended
+stripe
+joblib
+flask-cors
+flask_mail

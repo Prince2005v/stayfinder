@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import HotelCard from "../components/HotelCard";
 import Footer from "../components/Footer";
+import Chatbot from "@/components/Chatbot"; // ✅ Chatbot import
 import { useEffect, useState } from "react";
 
 interface UserProfile {
@@ -55,7 +56,12 @@ export default function Home() {
   ];
 
   return (
-    <main className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+    <main
+      className="text-gray-900 dark:text-white min-h-screen"
+      style={{
+        background: "bg-[#0F172A] dark:bg-[#111827]",
+      }}
+    >
       <Navbar />
       <HeroSection />
 
@@ -63,17 +69,14 @@ export default function Home() {
       {user?.user_type === "host" && (
         <section className="max-w-6xl mx-auto px-6 py-12">
           <h2 className="text-3xl font-bold mb-6">Host Dashboard</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
-            Welcome back <span className="font-semibold">{user.name}</span> —  
-            manage your hotels, rooms, and bookings with quick actions.
+          <p className="text-gray-200 mb-8">
+            Welcome back <span className="font-semibold">{user.name}</span> — manage your hotels, rooms, and bookings easily.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            {/* Add New Hotel */}
             <a
               href="/register-hotel"
-              className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl shadow-lg text-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl shadow-lg text-center transition-all"
             >
               <h3 className="text-xl font-semibold mb-2">Register New Hotel</h3>
               <p className="text-sm opacity-90">
@@ -81,10 +84,9 @@ export default function Home() {
               </p>
             </a>
 
-            {/* Manage Hotels */}
             <a
               href="/host/dashboard"
-              className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl shadow-lg text-center"
+              className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl shadow-lg text-center transition-all"
             >
               <h3 className="text-xl font-semibold mb-2">Manage Hotels</h3>
               <p className="text-sm opacity-90">
@@ -92,10 +94,9 @@ export default function Home() {
               </p>
             </a>
 
-            {/* View Bookings */}
             <a
               href="/host/dashboard#bookings"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white p-6 rounded-xl shadow-lg text-center"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white p-6 rounded-xl shadow-lg text-center transition-all"
             >
               <h3 className="text-xl font-semibold mb-2">Bookings</h3>
               <p className="text-sm opacity-90">
@@ -106,25 +107,27 @@ export default function Home() {
         </section>
       )}
 
-      {/* ✅ Top Hotels Section (visible to everyone) */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-center mb-10">Top Hotels</h2>
+     {/* ✅ Top Hotels Section */}
+<section className="max-w-6xl mx-auto px-6 py-20 bg-[#0F172A] text-white rounded-2xl shadow-lg mt-10">
+  <h2 className="text-3xl font-bold text-center mb-12 tracking-wide">
+    Top Hotels
+  </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hotels.map((hotel) => (
-            <HotelCard
-              key={hotel.id}
-              img={hotel.img}
-              name={hotel.name}
-              desc={hotel.desc}
-            />
-          ))}
-        </div>
-      </section>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    {hotels.map((hotel) => (
+      <HotelCard
+        key={hotel.id}
+        img={hotel.img}
+        name={hotel.name}
+        desc={hotel.desc}
+      />
+    ))}
+  </div>
+</section>
 
-      {/* ✅ CTA for Guests */}
+      {/* ✅ CTA Section for Guests */}
       {(!user || user.user_type === "guest") && (
-        <section className="bg-blue-600 text-white py-20 text-center">
+        <section className="bg-[#1E3A8A] hover:bg-[#1E40AF] text-white py-20 text-center transition-all">
           <h2 className="text-4xl font-bold mb-4">Find Your Perfect Mid-Term Stay</h2>
           <p className="max-w-2xl mx-auto mb-8 text-lg opacity-90">
             Affordable, flexible accommodations for students, professionals,
@@ -140,6 +143,9 @@ export default function Home() {
       )}
 
       <Footer />
+
+      {/* ✅ Chatbot Added */}
+      <Chatbot />
     </main>
   );
 }

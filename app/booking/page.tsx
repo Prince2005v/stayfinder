@@ -3,7 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 function BookingContent() {
   const params = useSearchParams();
@@ -44,21 +44,37 @@ function BookingContent() {
 
   return (
     <>
-      <main className="pt-24 px-6 min-h-screen bg-gray-100 dark:bg-gray-900">
-        <h1 className="text-3xl font-bold mb-6">Complete Your Booking</h1>
+      <main className="pt-24 px-6 min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
 
-        <div className="max-w-xl bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-          <label className="block mb-2 font-semibold">Check-in Date</label>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100 text-center">
+          Complete Your Booking
+        </h1>
+
+        <div className="max-w-xl mx-auto bg-white dark:bg-gray-800 
+                        p-8 rounded-xl shadow-lg dark:shadow-gray-700 
+                        transition-colors">
+
+          {/* ✅ Check-in Input */}
+          <label className="block mb-2 font-semibold text-gray-800 dark:text-gray-200">
+            Check-in Date
+          </label>
           <input
             type="date"
             value={checkin}
             onChange={(e) => setCheckin(e.target.value)}
-            className="w-full p-3 rounded-lg border mb-4"
+            className="w-full p-3 rounded-lg border dark:border-gray-700 
+                       bg-gray-50 dark:bg-gray-700 dark:text-gray-100
+                       focus:ring-2 focus:ring-blue-500 transition"
           />
 
-          <label className="block mb-2 font-semibold">Select Stay Duration</label>
+          {/* ✅ Duration Selector */}
+          <label className="block mt-5 mb-2 font-semibold text-gray-800 dark:text-gray-200">
+            Select Stay Duration
+          </label>
           <select
-            className="w-full p-3 rounded-lg text-amber-300"
+            className="w-full p-3 rounded-lg border dark:border-gray-700 
+                       bg-gray-50 dark:bg-gray-700 dark:text-gray-100 
+                       cursor-pointer focus:ring-2 focus:ring-blue-500 transition"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
           >
@@ -70,9 +86,13 @@ function BookingContent() {
             <option value="90">90 days</option>
           </select>
 
+          {/* ✅ Submit Button */}
           <button
             onClick={handleBooking}
-            className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg"
+            className="mt-6 w-full bg-blue-600 hover:bg-blue-700 
+                       dark:bg-blue-500 dark:hover:bg-blue-600 
+                       text-white py-3 rounded-lg font-semibold 
+                       transition-all"
           >
             Proceed
           </button>
@@ -87,7 +107,7 @@ export default function BookingPage() {
     <>
       <Navbar />
 
-      {/* ✅ FIX: Wrap dynamic hook in Suspense */}
+      {/* ✅ Wrap dynamic hooks in Suspense */}
       <Suspense fallback={<div className="pt-24 text-center">Loading...</div>}>
         <BookingContent />
       </Suspense>
@@ -96,5 +116,3 @@ export default function BookingPage() {
     </>
   );
 }
-
-import { Suspense } from "react";

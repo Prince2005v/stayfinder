@@ -11,7 +11,7 @@ export default function HotelCard({ img, name, desc }: HotelCardProps) {
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{name}</h3>
         <p className="text-sm opacity-80 mb-4">{desc}</p>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        <button className="px-4 py-2 bg-[#1E3A8A] hover:bg-[#1E40AF]  text-white rounded-lg ">
           Book Now
         </button>
       </div>
